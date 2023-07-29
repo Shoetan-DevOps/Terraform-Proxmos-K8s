@@ -1,0 +1,25 @@
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+*.terraform*
+
+# Ignore .terraform directory
+**/.terraform/*
+
+# Ignore override files (Use terraform.tfvars to include in version control)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore crash log files
+crash.log
+
+# Ignore the .terraformrc file
+.terraformrc
+
+# Ignore files in .terraform folder
+**/.terraform/*
+token.yaml

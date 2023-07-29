@@ -1,0 +1,17 @@
+k8s-sandbox:
+  network:
+    net_addr: 10.0.0.0
+    net_mask: /24
+    ip_start: 30
+  nodes:
+    masters:
+      - hostname: sandbox-m01
+        cpu: 2G
+        mem: 4G
+    workers:
+      - hostname: sandbox-w01
+        cpu: 2G
+        mem: 4G
+
+#k8s-prod:
+
