@@ -1,0 +1,71 @@
+# Create a new VM from cloud init templates
+
+# resource "proxmox_vm_qemu" "testing02" {
+
+#   name        = "tftest1.xyz.com"
+#   desc        = "tf description"
+#   target_node = "proxmox1-xx"
+
+#   onboot      = true
+#   clone = "cit-ubuntu-jammy"
+# #  agent = 1
+
+#   # VM CPU Settings
+#   storage = "local-lvm"
+#   cores   = 3
+#   sockets = 1
+#   memory  = 2560
+#   disk_gb = 4
+#   nic     = "virtio"
+#   bridge  = "vmbr0"
+
+  
+#   # VM Cloud-Init Settings
+#   os_type = "cloud-init"
+
+#   # IP Address and Gateway
+#   ipconfig0 = "ip=192.168.1.7/24,gw=192.168.1.1"
+
+#   # (Optional) Default User
+#   ssh_user        = "ansible"
+
+#   # (Optional) Add your SSH KEY
+#   ssh_private_key = file("./vault/id_rsa")
+#   sshkeys = file("./vault/id_rsa.pub")
+# }
+
+
+# /* Uses Cloud-Init options from Proxmox 5.2 */
+# resource "proxmox_vm_qemu" "k8s-node" {
+#   for_each     = local.node_iterator
+
+#   name        = each.value.name
+#   desc        = each.value.descripion
+#   target_node = "pve01"
+#   vmid        = each.value.vmid              
+#   clone       = "cit-ubuntu-jammy"
+#   cores       = each.value.cpu
+#   sockets     = 1                         
+#   memory      = each.value.mem
+#   nic         = "virtio"
+#   bridge      = "vmbr0"
+
+#   #storage = "local-lvm"
+#   #disk_gb = 10
+#   #scsihw   = "virtio-scsi-single"
+#   disk {
+#     storage = "local-lvm"
+#     type    = "virtio"
+#     size    = each.value.hdd
+#   }
+
+#   ssh_user        = "ansible"
+#   ssh_private_key = file("./vault/id_rsa")
+
+#   os_type   = "cloud-init"                               #"ubuntu" #"cloud-init"
+#   ipconfig0 = each.value.ipconfig0  
+
+#   sshkeys = file("./vault/id_rsa.pub")
+# }
+
+
