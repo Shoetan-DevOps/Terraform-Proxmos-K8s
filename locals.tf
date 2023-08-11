@@ -16,11 +16,12 @@ locals {
           vmid       = 800 + node_key
           key        = node_key
           host       = cluster_value.network.ip_start + node_key
+          ip = "${cluster_value.network.net_addr}.${cluster_value.network.ip_start + node_key}"
           ipconfig0  = "ip=${cluster_value.network.net_addr}.${cluster_value.network.ip_start + node_key}${cluster_value.network.net_mask},gw=10.0.0.1"
         }
       ]
     ]
-  ) : k => v }
+  ) : v.name => v }
 
 }
 
@@ -32,6 +33,6 @@ output "nodes-node_iterator" {
   value = local.node_iterator
 }
 
-output "lookup_nodes" {
-  value = local.nodes
-}
+# output "lookup_nodes" {
+#   value = local.nodes
+# }

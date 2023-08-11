@@ -6,7 +6,7 @@ resource "proxmox_vm_qemu" "k8s-node" {
   desc        = each.value.descripion
   target_node = "pve01"
   vmid        = each.value.vmid
-  clone       = "cit-ubuntu-jammy"
+  clone       = "CIT-ubuntu-jammy"
   cores       = each.value.cpu
   sockets     = 1
   memory      = each.value.mem
@@ -19,13 +19,15 @@ resource "proxmox_vm_qemu" "k8s-node" {
     size    = each.value.hdd
   }
 
-  ssh_user        = "ansible"
-  ssh_private_key = file("./vault/id_rsa")
+  #ssh_user        = "ansible"
+  #ssh_private_key = file("./vault/id_rsa")
 
   os_type   = "cloud-init" #"ubuntu" #"cloud-init"
   ipconfig0 = each.value.ipconfig0
+  nameserver = "1.1.1.1"
 
-  sshkeys = file("./vault/id_rsa.pub")
+  #sshkeys = file("./vault/id_rsa.pub")
+
 }
 
 
