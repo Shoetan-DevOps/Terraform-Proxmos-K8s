@@ -1,4 +1,4 @@
-k8s-sandbox:
+k8s-dev:
   HA: no
   network:
     net_addr: 10.0.0
@@ -6,15 +6,53 @@ k8s-sandbox:
     ip_start: 130
   nodes:
       - type: master
-        hostname: sandbox-m01
+        hostname: dev-m01
+        cpu: 2
+        mem: 4098
+        hdd: 10G
+      - type: worker
+        hostname: dev-w01
+        cpu: 2
+        mem: 2048
+        hdd: 20G
+
+# k8s-perf:
+#   HA: no
+#   network:
+#     net_addr: 10.0.0
+#     net_mask: /24
+#     ip_start: 140
+#   nodes:
+#       - type: master
+#         hostname: perf-m01
+#         cpu: 2
+#         mem: 4098
+#         hdd: 10G
+#       - type: worker
+#         hostname: perf-w01
+#         cpu: 2
+#         mem: 4098
+#         hdd: 20G
+
+k8s-prod:
+  HA: no
+  network:
+    net_addr: 10.0.0
+    net_mask: /24
+    ip_start: 150
+  nodes:
+      - type: master
+        hostname: prod-m01
         cpu: 2
         mem: 4096
         hdd: 10G
       - type: worker
-        hostname: sandbox-w01
-        cpu: 1
-        mem: 1028
+        hostname: prod-w01
+        cpu: 2
+        mem: 4048
         hdd: 20G
-
-#k8s-prod:
-
+      - type: worker
+        hostname: prod-w02
+        cpu: 2
+        mem: 4048
+        hdd: 20G
